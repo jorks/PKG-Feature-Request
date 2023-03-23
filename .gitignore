@@ -1,0 +1,11 @@
+# Ignore
+.DS_Store
+uploads/*
+DEV_NOTES.md
+
+# IDE Stuff
+.idea/*
+*.sublime-project
+*.sublime-workspace
+*.vscode/*
+

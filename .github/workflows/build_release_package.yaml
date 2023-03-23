@@ -1,0 +1,66 @@
+name: Manual - Build Signed Package and Publish Release
+
+env:
+  NOTARIZE_PASSWORD: ${{ secrets.NOTARIZE_PASSWORD }}
+  NOTARIZE_APPLE_ID: ${{ secrets.NOTARIZE_APPLE_ID }}
+  NOTARIZE_TEAM_ID: ${{ secrets.NOTARIZE_TEAM_ID }}
+
+on: [workflow_dispatch]
+
+jobs:
+  build-pkg:
+    runs-on: macos-12
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Install PKG Signing Certificate
+      # NOTE: Working fork of the original apple-actions/import-codesign-certs
+      - name: Install Apple Developer PKG certificates
+        uses: ssrobins/import-codesign-certs@04ce695a5e6002f1971a8ed78fedd676318f950f
+        with:
+          keychain-password: ${{ secrets.PKG_KEYCHAIN_PASSWORD }}
+          p12-file-base64: ${{ secrets.PKG_CERTIFICATES_P12 }}
+          p12-password: ${{ secrets.PKG_CERTIFICATES_P12_PASSWORD }}
+
+      - name: Download munkipkg and test it can execute with python3 
+        run: ./workflow/install_munkipkg.sh
+
+      - name: Run the build_package script 
+        run: ./workflow/build_package.sh $NOTARIZE_PASSWORD $NOTARIZE_APPLE_ID $NOTARIZE_TEAM_ID
+
+      - name: Get Package Details
+        id: get_package_details
+        run: |
+          echo "PACKAGE_NAME=$(/bin/cat ./uploads/build-name.txt)" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=$(/bin/cat ./uploads/build-version.txt)" >> $GITHUB_ENV
+
+      # You may wish to update the body text to suit your needs.
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          name: ${{env.PACKAGE_NAME}}-${{env.PACKAGE_VERSION}}
+          tag_name: v${{env.PACKAGE_VERSION}}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+              # Notes
+              This package was created by GitHub Actions.
+              You can update this text as required for your use case, such as using a GitHub Action to generate a changelog.
+
+              ## Credit
+              Workflow and scripts by [James Corcoran](https://jorks.net)
+              https://github.com/jorks/MacPkgGen
+          files: ${{github.workspace}}/uploads/*.pkg
+
+      - name: Upload packages to Workflow Artifacts
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: ${{env.PACKAGE_NAME}}-${{env.PACKAGE_VERSION}}
+          path: |
+            uploads
+            !uploads/*.txt
+          if-no-files-found: error
