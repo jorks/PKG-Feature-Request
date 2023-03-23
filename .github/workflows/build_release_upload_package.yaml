@@ -57,7 +57,7 @@ jobs:
           files: ${{github.workspace}}/uploads/*.pkg
 
       - name: Upload the package to Jamf with the upload_jamf script (DEMO ONLY)
-        run: ./helpers/build_package.sh ${{ secrets.JAMF_URL }} ${{ secrets.JAMF_USERNAME }} ${{ secrets.JAMF_PASSWORD }} ${{env.PACKAGE_NAME}}-${{env.PACKAGE_VERSION}}
+        run: ./helpers/upload_jamf.sh ${{ secrets.JAMF_URL }} ${{ secrets.JAMF_USERNAME }} ${{ secrets.JAMF_PASSWORD }} ${{env.PACKAGE_NAME}}-${{env.PACKAGE_VERSION}}
 
       - name: Upload packages to Workflow Artifacts
         uses: actions/upload-artifact@v3.1.1
