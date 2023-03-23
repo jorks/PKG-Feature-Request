@@ -1,0 +1,11 @@
+{
+    "ownership": "recommended",
+    "suppress_bundle_relocation": true,
+    "postinstall_action": "none",
+    "preserve_xattr": false,
+    "name": "FeatureRequest-${version}.pkg",
+    "identifier": "com.github.munki.pkg.FeatureRequest",
+    "install_location": "/",
+    "version": "1.0",
+    "distribution_style": false
+}
