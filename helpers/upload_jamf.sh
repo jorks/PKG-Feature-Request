@@ -5,7 +5,7 @@
 #	Functions for safe token-based auth using the Jamf Pro API
 #	To token auth use: --header "Authorization: Bearer $token"
 #
-#	You can also call these functions in your scrip logic:
+#	You can also call these functions in your script logic:
 #	testToken - returns 200 if the token is still valid
 #	expireToken - expires the current token and unsets the variable
 #
