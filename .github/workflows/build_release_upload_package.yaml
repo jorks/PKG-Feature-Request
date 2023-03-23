@@ -1,4 +1,4 @@
-name: Manual - Build Sign and Upload Package
+name: Manual - Build Signed Package and Publish Release and Upload to Jamf (DEMO)
 
 env:
   NOTARIZE_PASSWORD: ${{ secrets.NOTARIZE_PASSWORD }}
@@ -35,6 +35,29 @@ jobs:
         run: |
           echo "PACKAGE_NAME=$(/bin/cat ./uploads/build-name.txt)" >> $GITHUB_ENV
           echo "PACKAGE_VERSION=$(/bin/cat ./uploads/build-version.txt)" >> $GITHUB_ENV
+
+      # You may wish to update the body text to suit your needs.
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          name: ${{env.PACKAGE_NAME}}-${{env.PACKAGE_VERSION}}
+          tag_name: v${{env.PACKAGE_VERSION}}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+              # Notes
+              This package was created by GitHub Actions.
+              You can update this text as required for your use case, such as using a GitHub Action to generate a changelog.
+
+              ## Credit
+              Workflow and scripts by [James Corcoran](https://jorks.net)
+              https://github.com/jorks/MacPkgGen
+          files: ${{github.workspace}}/uploads/*.pkg
+
+      - name: Upload the package to Jamf with the upload_jamf script (DEMO ONLY)
+        run: ./helpers/build_package.sh ${{ secrets.JAMF_URL }} ${{ secrets.JAMF_USERNAME }} ${{ secrets.JAMF_PASSWORD }} ${{env.PACKAGE_NAME}}-${{env.PACKAGE_VERSION}}
 
       - name: Upload packages to Workflow Artifacts
         uses: actions/upload-artifact@v3.1.1

@@ -1,1 +1,33 @@
 .	40755	0/0
+./._Library	40755	0/0	0	0
+./Library	40755	0/0
+./Library/Management	40755	0/0
+./Library/Management/Jorks	40755	0/0
+./Library/Management/Jorks/Branding	40755	0/0
+./Library/Management/Jorks/Branding/._JamfConnect	40755	0/0	0	0
+./Library/Management/Jorks/Branding/General	40755	0/0
+./Library/Management/Jorks/Branding/General/._Jorks_Brand.png	100664	0/0	0	0
+./Library/Management/Jorks/Branding/General/._Jorks_Logo.png	100644	0/0	0	0
+./Library/Management/Jorks/Branding/General/._desktop_office.jpg	100644	0/0	0	0
+./Library/Management/Jorks/Branding/General/._eula.txt	100644	0/0	0	0
+./Library/Management/Jorks/Branding/General/Jorks_Brand.png	100664	0/0	14372	3830139129
+./Library/Management/Jorks/Branding/General/Jorks_Logo.png	100644	0/0	149825	3216975207
+./Library/Management/Jorks/Branding/General/desktop_office.jpg	100644	0/0	1152941	2076206196
+./Library/Management/Jorks/Branding/General/eula.txt	100644	0/0	445	4899264
+./Library/Management/Jorks/Branding/JamfConnect	40755	0/0
+./Library/Management/Jorks/Branding/JamfConnect/._Jorks_Brand.png	100664	0/0	0	0
+./Library/Management/Jorks/Branding/JamfConnect/._Jorks_Logo.png	100644	0/0	0	0
+./Library/Management/Jorks/Branding/JamfConnect/._jorks-offline-help.html	100755	0/0	0	0
+./Library/Management/Jorks/Branding/JamfConnect/Jorks_Brand.png	100664	0/0	14372	3830139129
+./Library/Management/Jorks/Branding/JamfConnect/Jorks_Logo.png	100644	0/0	149825	3216975207
+./Library/Management/Jorks/Branding/JamfConnect/jorks-offline-help.html	100755	0/0	4174	3100660186
+./Library/Management/Jorks/Branding/Utilities	40755	0/0
+./Library/Management/Jorks/Branding/Utilities/._nudge.png	100644	0/0	0	0
+./Library/Management/Jorks/Branding/Utilities/nudge.png	100644	0/0	618748	1287349780
+./Library/Management/Jorks/Data	40755	0/0
+./Library/Management/Jorks/Logs	40755	0/0
+./Library/Management/Jorks/Scripts	40755	0/0
+./Library/Management/Jorks/Scripts/._connect_login_failure.sh	100755	0/0	0	0
+./Library/Management/Jorks/Scripts/._connect_login_success.sh	100755	0/0	0	0
+./Library/Management/Jorks/Scripts/connect_login_failure.sh	100755	0/0	497	2826917272
+./Library/Management/Jorks/Scripts/connect_login_success.sh	100755	0/0	335	59629819

@@ -1,14 +1,8 @@
 # Feature Request
 
-This package is source controlled and managed with git and GitHub Workflows.
+Please upvote this feature request to enable API Package Uploads to Jamf
 
-### Package Notes
-
-This package includes..
-
-### Change History
-
-More Info..
+https://ideas.jamf.com/ideas/JN-I-22487
 
 ### Workflow Credit
 
