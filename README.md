@@ -1,6 +1,6 @@
 # Feature Request
 
-Please upvote this feature request to enable API Package Uploads to Jamf
+Please upvote this feature request to enable API Package Uploads to Jamf:
 
 https://ideas.jamf.com/ideas/JN-I-22487
 
