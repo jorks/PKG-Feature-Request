@@ -6,7 +6,7 @@
     "name": "FeatureRequest-${version}.pkg",
     "identifier": "net.jorks.pkg.FeatureRequest",
     "install_location": "/",
-    "version": "1.0",
+    "version": "1.1",
     "distribution_style": true,
     "signing_info": {
         "identity": "Developer ID Installer: SEEK Limited (KS9GBQ67G7)",
