@@ -28,13 +28,16 @@ jobs:
         run: ./helpers/install_munkipkg.sh
 
       - name: Run the build_package script 
-        run: ./helpers/build_package.sh $NOTARIZE_PASSWORD $NOTARIZE_APPLE_ID $NOTARIZE_TEAM_ID
+        run: ./helpers/build_package.sh
 
       - name: Get Package Details
         id: get_package_details
         run: |
           echo "PACKAGE_NAME=$(/bin/cat ./uploads/build-name.txt)" >> $GITHUB_ENV
           echo "PACKAGE_VERSION=$(/bin/cat ./uploads/build-version.txt)" >> $GITHUB_ENV
+          
+      - name: Upload the package to Jamf with the upload_jamf script (DEMO ONLY)
+        run: ./helpers/upload_jamf.sh ${{ secrets.JAMF_URL }} ${{ secrets.JAMF_USERNAME }} ${{ secrets.JAMF_PASSWORD }} ${{env.PACKAGE_NAME}}-${{env.PACKAGE_VERSION}}
 
       # You may wish to update the body text to suit your needs.
       - name: Create Release
@@ -55,9 +58,6 @@ jobs:
               Workflow and scripts by [James Corcoran](https://jorks.net)
               https://github.com/jorks/MacPkgGen
           files: ${{github.workspace}}/uploads/*.pkg
-
-      - name: Upload the package to Jamf with the upload_jamf script (DEMO ONLY)
-        run: ./helpers/upload_jamf.sh ${{ secrets.JAMF_URL }} ${{ secrets.JAMF_USERNAME }} ${{ secrets.JAMF_PASSWORD }} ${{env.PACKAGE_NAME}}-${{env.PACKAGE_VERSION}}
 
       - name: Upload packages to Workflow Artifacts
         uses: actions/upload-artifact@v3.1.1
