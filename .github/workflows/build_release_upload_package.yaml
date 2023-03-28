@@ -1,10 +1,5 @@
 name: Manual - Build Signed Package and Publish Release and Upload to Jamf (DEMO)
 
-env:
-  NOTARIZE_PASSWORD: ${{ secrets.NOTARIZE_PASSWORD }}
-  NOTARIZE_APPLE_ID: ${{ secrets.NOTARIZE_APPLE_ID }}
-  NOTARIZE_TEAM_ID: ${{ secrets.NOTARIZE_TEAM_ID }}
-
 on: [workflow_dispatch]
 
 jobs:
